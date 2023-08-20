@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "822928535987",
+    "project_id": "used-market7777",
+    "storage_bucket": "used-market7777.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822928535987:android:ac2311d503510a13709bc6",
+        "android_client_info": {
+          "package_name": "com.example.owj.used_market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822928535987-8l0s860ccha63jb7vpcvv876j3vtrej8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuvc8khl2y8Jijz3LA6Me8nnWTz9IXViI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822928535987-8l0s860ccha63jb7vpcvv876j3vtrej8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "822928535987-362gtkij0lrg2chm5v7n1kmb8263l519.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.owj.usedMarket"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
