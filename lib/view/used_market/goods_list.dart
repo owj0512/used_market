@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:used_market/controller/used_market/used_market_controller.dart';
 import 'package:used_market/view/used_market/add_goods.dart';
 
 class GoodsList extends StatefulWidget {
@@ -67,7 +68,34 @@ class GoodsListState extends State<GoodsList> {
               ],
             ),
           ),
-          body: SizedBox(),
+          body: FutureBuilder(
+              future: UsedMarketController().getGoodsList(),
+              builder: (context, AsyncSnapshot snapshot) {
+                return !snapshot.hasData
+                    ? const Center(child: CircularProgressIndicator())
+                    :
+                snapshot.data.docs.isEmpty
+                    ? const Center(child: Text('등록된 물품이 없습니다'))
+                :
+                SingleChildScrollView(
+                        child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data.docs.length,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    onTap: () {},
+                                    child: Column(
+                                      children: [
+
+                                      ],
+                                    )
+                                  );
+
+                                })
+                        ));
+              }),
           floatingActionButton: FloatingActionButton.extended(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const AddGoods()));

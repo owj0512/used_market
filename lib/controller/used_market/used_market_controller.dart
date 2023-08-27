@@ -6,8 +6,15 @@ import 'package:firebase_storage/firebase_storage.dart';
 class UsedMarketController {
   String uid = FirebaseAuth.instance.currentUser!.uid;
 
+  //물품 리스트 가져오기
+  Future getGoodsList() async{
+    var result = await FirebaseFirestore.instance.collection('usedMarket').get();
+    return result;
+  }
+  
+  
   //물품 등록
-  Future<void> addGoods(String category, String goodsName, int price, String tradePlace, List images, List imageDescription)  async {
+  Future<void> addGoods(String category, String goodsName, String price, String tradePlace, List images, List imageDescription)  async {
       //사진 저장
       List<String> imageUrlList = []; //등록된 이미지들의 url을 저장할 변수
       //등록할 사진이 1장 이상 있으면, 사진 개수만큼 한장씩 반복해서 올림
@@ -15,7 +22,7 @@ class UsedMarketController {
         for (int i = 0; i < images.length; i++) {
           Uint8List bytes = await images[i].readAsBytes(); //받아온 이미지가 XFile 타입이므로 DB에 업로드하기 위해 타입을 변환함. Uint8List 타입으로 하는 이유는 웹,앱에서 모두 가능하기 때문
           final projectImages =
-          FirebaseStorage.instance.ref().child('usedMarket').child(uid).child('${DateTime.now().toString()}.jpg');
+          FirebaseStorage.instance.ref().child('usedMarket').child(uid).child('${Timestamp.now().millisecondsSinceEpoch}.jpg');
           UploadTask uploadTask = projectImages.putData(bytes, SettableMetadata(contentType: 'image/jpg'));
           TaskSnapshot taskSnapshot = await uploadTask;
           final imageUrl = await taskSnapshot.ref.getDownloadURL(); //저장한 사진을 나중에 읽어오기 위해 이미지 URL을 DB에 저장해야됨
