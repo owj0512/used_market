@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:used_market/view/market/add_goods.dart';
+import 'package:used_market/view/used_market/add_goods.dart';
 
 class GoodsList extends StatefulWidget {
   const GoodsList({Key? key}) : super(key: key);

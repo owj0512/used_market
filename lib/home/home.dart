@@ -71,24 +71,21 @@ class HomeState extends State<Home> {
           )
         ],
       ),
-      body: Center(
-        child: SizedBox(
-          width: 800,
-          child: Column(
-            children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0.0),
-            child: MainBanner(),
-          ),
-          const SizedBox(height: 8.0),
-          const NoticeShorts(noticeQuantity: 3),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 0.0),
+          child: MainBanner(),
+        ),
+        const SizedBox(height: 8.0),
+        const NoticeShorts(noticeQuantity: 3),
 
-          TextButton(onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => MainBanner()));
-          }, child: Text('테스트'))
+        TextButton(onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => MainBanner()));
+        }, child: Text('테스트'))
 
-            ],
-          ),
+          ],
         ),
       ),
     );

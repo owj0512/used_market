@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:used_market/view/market/goods_list.dart';
+import 'package:used_market/view/used_market/goods_list.dart';
 import 'package:used_market/view/user_info_management/my_page.dart';
 import 'home.dart';
 
