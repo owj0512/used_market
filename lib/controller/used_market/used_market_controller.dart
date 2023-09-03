@@ -6,13 +6,21 @@ import 'package:firebase_storage/firebase_storage.dart';
 class UsedMarketController {
   String uid = FirebaseAuth.instance.currentUser!.uid;
 
+  //물품 상세정보 가져오기
+  Future getGoodsInfo(String docId) async{
+    var result = await FirebaseFirestore.instance.collection('usedMarket').doc(docId).get();
+    return result.data();
+  }
+
   //물품 리스트 가져오기
   Future getGoodsList(String keyword) async{
-    var result = keyword.isEmpty?
-    await FirebaseFirestore.instance.collection('usedMarket').get()
-        :
-    await FirebaseFirestore.instance.collection('usedMarket').where('goodsName', isGreaterThanOrEqualTo: keyword)
-        .where('goodsName', isLessThan: keyword + 'z').get();
+      var result = keyword.isEmpty?
+          await FirebaseFirestore.instance.collection('usedMarket').orderBy('registeredDate', descending: true).get()
+      :
+      await FirebaseFirestore.instance.collection('usedMarket')
+          .where('goodsName', isGreaterThanOrEqualTo: keyword)
+          .where('goodsName', isLessThan: keyword + 'z')
+          .get();
     return result;
   }
   

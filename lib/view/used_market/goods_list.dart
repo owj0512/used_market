@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:used_market/controller/used_market/used_market_controller.dart';
 import 'package:used_market/view/used_market/add_goods.dart';
+import 'package:used_market/view/used_market/goods_view.dart';
 
 class GoodsList extends StatefulWidget {
   const GoodsList({Key? key}) : super(key: key);
@@ -81,14 +82,16 @@ class GoodsListState extends State<GoodsList> {
                 :
                 SingleChildScrollView(
                         child: Padding(
-                            padding: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.symmetric(horizontal : 8),
                             child: ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: snapshot.data.docs.length,
                                 itemBuilder: (context, index) {
                                   final item = snapshot.data.docs[index];
                                   return InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (contxet) => GoodsView(docId: item.id)));
+                                    },
                                     child: Column(
                                       children: [
                                         index == 0?
