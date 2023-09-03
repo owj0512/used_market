@@ -7,8 +7,12 @@ class UsedMarketController {
   String uid = FirebaseAuth.instance.currentUser!.uid;
 
   //물품 리스트 가져오기
-  Future getGoodsList() async{
-    var result = await FirebaseFirestore.instance.collection('usedMarket').get();
+  Future getGoodsList(String keyword) async{
+    var result = keyword.isEmpty?
+    await FirebaseFirestore.instance.collection('usedMarket').get()
+        :
+    await FirebaseFirestore.instance.collection('usedMarket').where('goodsName', isGreaterThanOrEqualTo: keyword)
+        .where('goodsName', isLessThan: keyword + 'z').get();
     return result;
   }
   
